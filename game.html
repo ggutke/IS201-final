@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joke Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 {
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+        select {
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            width: 80%;
+            max-width: 300px;
+            background-color: #f9f9f9;
+        }
+        .joke-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .button {
+            padding: 12px 24px;
+            font-size: 18px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Interactive Joke Generator</h1>
+
+    <div class="container">
+        <select id="category">
+            <option value="dad">Dad Jokes</option>
+            <option value="knock">Knock-Knock Jokes</option>
+            <option value="programming">Programming Jokes</option>
+        </select>
+
+        <button class="button" onclick="generateJoke()">Get a Joke</button>
+
+        <div class="joke-box" id="jokeBox">
+            Select a category and click "Get a Joke!"
+        </div>
+    </div>
+
+    <script>
+        function generateJoke() {
+            const category = document.getElementById('category').value;
+            let joke = '';
+
+            // Array of jokes for different categories
+            const jokes = {
+                dad: [
+                    "Why don't skeletons fight each other? They don't have the guts.",
+                    "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+                    "What do you call fake spaghetti? An impasta!",
+                    "Why don't some couples go to the gym? Because some relationships don't work out.",
+                    "I told my computer I needed a break, and it froze."
+                ],
+                knock: [
+                    "Knock knock. Who’s there? Lettuce. Lettuce who? Lettuce in, it’s cold out here!",
+                    "Knock knock. Who’s there? Cow says. Cow says who? No silly, Cow says mooo!",
+                    "Knock knock. Who’s there? Boo. Boo who? Don't cry, it's just a joke!",
+                    "Knock knock. Who’s there? Broken pencil. Broken pencil who? Forget it, it's pointless."
+                ],
+                programming: [
+                    "Why do programmers prefer dark mode? Because light attracts bugs!",
+                    "Why do Java developers wear glasses? Because they don’t see sharp.",
+                    "What’s a programmer’s favorite hangout place? The Foo Bar.",
+                    "Why was the JavaScript developer sad? Because he didn’t know how to ‘null’ his feelings.",
+                    "How many programmers does it take to change a light bulb? None. It’s a hardware problem!"
+                ]
+            };
+
+            // Select a random joke based on the category chosen
+            if (jokes[category]) {
+                const randomJoke = jokes[category][Math.floor(Math.random() * jokes[category].length)];
+                document.getElementById("jokeBox").textContent = randomJoke;
+            } else {
+                document.getElementById("jokeBox").textContent = "Oops! Something went wrong.";
+            }
+        }
+    </script>
+
+</body>
+</html>
